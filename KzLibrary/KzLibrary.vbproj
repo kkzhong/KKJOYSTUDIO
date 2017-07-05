@@ -69,6 +69,7 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -96,6 +97,20 @@
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="AppPublic.vb" />
+    <Compile Include="LibraryPanels.vb" />
+    <Compile Include="KzInputListPanel.Designer.vb">
+      <DependentUpon>KzInputListPanel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="KzInputListPanel.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StylesForm.Designer.vb">
+      <DependentUpon>StylesForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StylesForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibraryEnum.vb" />
     <Compile Include="LibraryTabs.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -110,9 +125,6 @@
     </Compile>
     <Compile Include="EndForm.vb">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LibraryPanels.vb">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -142,6 +154,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EndForm.resx">
       <DependentUpon>EndForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KzInputListPanel.resx">
+      <DependentUpon>KzInputListPanel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StylesForm.resx">
+      <DependentUpon>StylesForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -223,9 +241,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Add.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="RefDocs\Collections.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

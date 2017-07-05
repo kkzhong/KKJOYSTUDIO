@@ -140,10 +140,9 @@ Public Class StartForm
         FormSwitch(Nothing)
     End Sub
 
-    Private Sub EditorButton_Click(sender As Object, e As EventArgs) Handles EditorButton.Click
-
+    Private Sub StyleFormToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StyleFormToolStripMenuItem.Click
+        FormSwitch(StylesForm, "測試", False, False)
     End Sub
-
 
 
 #End Region
