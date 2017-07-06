@@ -97,6 +97,7 @@
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="AppPublic.vb" />
+    <Compile Include="LibraryDeclaration.vb" />
     <Compile Include="LibraryPanels.vb" />
     <Compile Include="KzInputListPanel.Designer.vb">
       <DependentUpon>KzInputListPanel.vb</DependentUpon>

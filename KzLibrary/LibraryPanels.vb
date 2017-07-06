@@ -1,19 +1,13 @@
-﻿Public Class KzInputPanel
+﻿Imports KzLibrary.KzConstants
+
+Public Class KzInputPanel
 
 End Class
-
-Public Enum KzColorPanelCategory
-    SystemColors
-    WebColors
-    NamedColors
-End Enum
 
 Public Class KzColorListPanel
     Inherits TableLayoutPanel
 
-    Dim iCategory As KzColorPanelCategory
-
-    Public Sub New(type As KzColorPanelCategory)
+    Public Sub New()
         AutoScroll = True
         BorderStyle = BorderStyle.None
 
@@ -24,188 +18,109 @@ Public Class KzColorListPanel
         End With
 
         RowStyles.Clear()
-
-        Category = type
+        SetList()
     End Sub
 
-    Public Property Category As KzColorPanelCategory
-        Get
-            Return iCategory
-        End Get
-        Set(value As KzColorPanelCategory)
-            iCategory = value
-            SetList()
-        End Set
-    End Property
 
     Private Sub SetList()
-        'Dim cList As IList(Of Color)
         Dim btn As Button
         Dim lbl As Label
 
-        If Category = KzColorPanelCategory.WebColors Then
-            For i As Integer = 0 To cNames.GetUpperBound(0)
-                Me.RowStyles.Add(New RowStyle(SizeType.Absolute, 25))
-                btn = New Button With {
+        For i As Integer = 0 To KzColorNameList.GetUpperBound(0)
+            Me.RowStyles.Add(New RowStyle(SizeType.Absolute, 25))
+            btn = New Button With {
                     .Text = "",
-                    .BackColor = Color.FromName(cNames(i)),
+                    .BackColor = Color.FromName(KzColorNameList(i)),
                     .Margin = New Padding(0),
                     .Padding = New Padding(0),
-                    .Dock = DockStyle.Fill}
-                Me.Controls.Add(btn, 0, i)
+                    .Dock = DockStyle.Fill,
+                    .Tag = Color.FromName(KzColorNameList(i))}
+            AddHandler btn.Click, AddressOf ColorSelected
+            Me.Controls.Add(btn, 0, i)
 
-                lbl = New Label With {
-                    .Text = cNames(i),
+            lbl = New Label With {
+                    .Text = KzColorNameList(i),
                     .AutoSize = False,
                     .TextAlign = ContentAlignment.MiddleLeft,
                     .Dock = DockStyle.Fill}
-                Me.Controls.Add(lbl, 1, i)
-            Next
-        End If
+            Me.Controls.Add(lbl, 1, i)
+        Next
+
     End Sub
 
-    Dim cNames() As String = {
-        "AliceBlue",
-        "AntiqueWhite",
-"Aqua",
-"Aquamarine",
-"Azure",
-"Beige",
-"Bisque",
-"Black",
-"BlanchedAlmond",
-"Blue",
-"BlueViolet",
-"Brown",
-"BurlyWood",
-"CadetBlue",
-"Chartreuse",
-"Chocolate",
-"Coral",
-"CornflowerBlue",
-"Cornsilk",
-"Crimson",
-"Cyan",
-"DarkBlue",
-"DarkCyan",
-"DarkGoldenrod",
-"DarkGray",
-"DarkGreen",
-"DarkKhaki",
-"DarkMagenta",
-"DarkOliveGreen",
-"DarkOrange",
-"DarkOrchid",
-"DarkRed",
-"DarkSalmon",
-"DarkSeaGreen",
-"DarkSlateBlue",
-"DarkSlateGray",
-"DarkTurquoise",
-"DarkViolet",
-"DeepPink",
-"DeepSkyBlue",
-"DimGray",
-"DodgerBlue",
-"Firebrick",
-"FloralWhite",
-"ForestGreen",
-"Fuchsia",
-"Gainsboro",
-"GhostWhite",
-"Gold",
-"Goldenrod",
-"Gray",
-"Green",
-"GreenYellow",
-"Honeydew",
-"HotPink",
-"IndianRed",
-"Indigo",
-"Ivory",
-"Khaki",
-"Lavender",
-"LavenderBlush",
-"LawnGreen",
-"LemonChiffon",
-"LightBlue",
-"LightCoral",
-"LightCyan",
-"LightGoldenrodYellow",
-"LightGray",
-"LightGreen",
-"LightPink",
-"LightSalmon",
-"LightSeaGreen",
-"LightSkyBlue",
-"LightSlateGray",
-"LightSteelBlue",
-"LightYellow",
-"Lime",
-"LimeGreen",
-"Linen",
-"Magenta",
-"Maroon",
-"MediumAquamarine",
-"MediumBlue",
-"MediumOrchid",
-"MediumPurple",
-"MediumSeaGreen",
-"MediumSlateBlue",
-"MediumSpringGreen",
-"MediumTurquoise",
-"MediumVioletRed",
-"MidnightBlue",
-"MintCream",
-"MistyRose",
-"Moccasin",
-"NavajoWhite",
-"Navy",
-"OldLace",
-"Olive",
-"OliveDrab",
-"Orange",
-"OrangeRed",
-"Orchid",
-"PaleGoldenrod",
-"PaleGreen",
-"PaleTurquoise",
-"PaleVioletRed",
-"PapayaWhip",
-"PeachPuff",
-"Peru",
-"Pink",
-"Plum",
-"PowderBlue",
-"Purple",
-"Red",
-"RosyBrown",
-"RoyalBlue",
-"SaddleBrown",
-"Salmon",
-"SandyBrown",
-"SeaGreen",
-"SeaShell",
-"Sienna",
-"Silver",
-"SkyBlue",
-"SlateBlue",
-"SlateGray",
-"Snow",
-"SpringGreen",
-"SteelBlue",
-"Tan",
-"Teal",
-"Thistle",
-"Tomato",
-"Transparent",
-"Turquoise",
-"Violet",
-"Wheat",
-"White",
-"WhiteSmoke",
-"Yellow",
-"YellowGreen"
-}
+    Private Sub ColorSelected(sender As Object, e As EventArgs)
+        Try
+            If Me.Tag.GetType = GetType(TextBox) Then
+                Dim t As TextBox = CType(Me.Tag, TextBox)
+                Dim c As Color = CType(sender, Button).Tag
+                t.Text = c.Name
+                t.Tag = c
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+End Class 'KzColorListPanel
+
+Public Class KzColorPalette
+
+End Class
+
+Public Class KzFontListPanel
+    Inherits FlowLayoutPanel
+
+    Public Sub New()
+        FlowDirection = FlowDirection.TopDown
+        AutoScroll = True
+        SetList()
+    End Sub
+
+    Private Sub SetList()
+        Dim btn As Button
+        Dim ffs() As System.Windows.Media.FontFamily = System.Windows.Media.Fonts.SystemFontFamilies
+        For Each ff As System.Windows.Media.FontFamily In ffs
+            btn = New Button With {
+                .Dock = DockStyle.Top,
+                .Text = ff.FamilyNames.ToString,  ' ff.Name,
+            .Font = New Font(ff.FamilyNames.ToString, 10.5, FontStyle.Regular)}
+            AddHandler btn.Click, AddressOf FontSelected
+            Me.Controls.Add(btn)
+        Next
+    End Sub
+
+    Private Sub FontSelected(sender As Object, e As EventArgs)
+        Try
+            If Me.Tag.GetType = GetType(TextBox) Then
+                Dim t As TextBox = CType(Me.Tag, TextBox)
+                Dim b As Button = CType(sender, Button)
+                t.Text = b.Font.Name
+                t.Tag = b.Font
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+End Class
+
+Public Class KzFlagsPanel
+    Inherits FlowLayoutPanel
+
+    Public Sub New()
+        FlowDirection = FlowDirection.TopDown
+        AutoScroll = True
+
+    End Sub
+
+    Public Property KeywordList As List(Of String)
+
+End Class
+
+Public Class KzFlagSelector
+    Inherits CheckedListBox
+
+    Public Sub New()
+
+    End Sub
+
 
 End Class
