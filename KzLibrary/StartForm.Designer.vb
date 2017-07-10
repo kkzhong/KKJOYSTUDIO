@@ -40,8 +40,9 @@ Partial Class StartForm
         Me.HomeMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TestMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GenToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.StyleFormToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GenToolTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ColorsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CommandsPanel.SuspendLayout()
         Me.StartMenu.SuspendLayout()
         Me.SuspendLayout()
@@ -212,7 +213,7 @@ Partial Class StartForm
         '
         'TestMenuItem
         '
-        Me.TestMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StyleFormToolStripMenuItem})
+        Me.TestMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StyleFormToolStripMenuItem, Me.ColorsToolStripMenuItem})
         Me.TestMenuItem.Name = "TestMenuItem"
         Me.TestMenuItem.Size = New System.Drawing.Size(44, 21)
         Me.TestMenuItem.Text = "Test"
@@ -222,6 +223,12 @@ Partial Class StartForm
         Me.StyleFormToolStripMenuItem.Name = "StyleFormToolStripMenuItem"
         Me.StyleFormToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.StyleFormToolStripMenuItem.Text = "StyleForm"
+        '
+        'ColorsToolStripMenuItem
+        '
+        Me.ColorsToolStripMenuItem.Name = "ColorsToolStripMenuItem"
+        Me.ColorsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ColorsToolStripMenuItem.Text = "Colors"
         '
         'StartForm
         '
@@ -263,4 +270,5 @@ Partial Class StartForm
     Friend WithEvents C6Button As Button
     Friend WithEvents ExitButton As Button
     Friend WithEvents StyleFormToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ColorsToolStripMenuItem As ToolStripMenuItem
 End Class

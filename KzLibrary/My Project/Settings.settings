@@ -17,5 +17,8 @@
     <Setting Name="TextFileFilter" Type="System.String" Scope="User">
       <Value Profile="(Default)">Text files (*.txt)|*.txt|Web files (*.htm, *.html, *.css)|*.htm;*.html;*.css|Office filles (*.doc, *.docx)|*.doc;*.docx|All files (*.*)|*.*</Value>
     </Setting>
+    <Setting Name="FileInitialDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

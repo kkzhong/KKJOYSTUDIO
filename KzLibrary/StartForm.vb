@@ -144,6 +144,14 @@ Public Class StartForm
         FormSwitch(StylesForm, "測試", False, False)
     End Sub
 
+    Private Sub ColorsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ColorsToolStripMenuItem.Click
+        'Dim c As New Color
+        ''c = Color.FromArgb(&HEE3A4C8E)
+        'c = Color.FromName("&HEE3A4C8E")
+        'MsgBox(c.ToArgb) ' & " IsNumber " & Int("EE3A4C8E"))
+        FormSwitch(KzAprsDialog, "測試")
+    End Sub
+
 
 #End Region
 End Class

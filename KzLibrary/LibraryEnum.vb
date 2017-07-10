@@ -7,6 +7,14 @@
     Current
 End Enum
 
+Public Enum KzSidePosition
+    None
+    RightBottom
+    RightTop
+    LeftTop
+    LeftBottom
+End Enum 'KzSidePosition
+
 Public Enum KzAlign
     None
     Center
@@ -57,192 +65,6 @@ Public Enum KzControlStatus
     DragEnd
     Zooming
 End Enum 'KzControlStatus
-
-'Public Enum KzTabControlTypes
-'    Blank
-'    TextEditor
-'    RichTextEditor
-'    WebBrowser
-'    DataSheet
-'    ListViewer
-'    TreeViewer
-'End Enum 'KzTabControlTypes
-
-'Public Structure xKzDrawingStyle
-'    Public Sub New(index As Integer)
-'        With Me
-'            .Index = index
-'            .Radius = 0
-'            .Margin = New Padding(0, 0, 0, 0)
-'            .Padding = New Padding(0, 0, 0, 0)
-
-'            .NormalFrameWidth = 0
-'            .NormalFrameColor = SystemColors.WindowFrame
-'            .NormalLineWidth = 1
-'            .NormalForeColor = SystemColors.ControlText
-'            .NormalFillColor = SystemColors.Control
-'            .NormalFont = SystemFonts.DefaultFont
-'            .NormalShadowWidth = 0
-'            .NormalShadowColor = SystemColors.ButtonShadow
-'            .NormalShadowPosition = KzAlign.RightBottom
-
-'            .HoverFrameWidth = 0
-'            .HoverFrameColor = SystemColors.WindowFrame
-'            .HoverLineWidth = 1
-'            .HoverForeColor = SystemColors.HighlightText
-'            .HoverFillColor = SystemColors.ControlLight
-'            .HoverFont = SystemFonts.DefaultFont
-'            .HoverShadowWidth = 0
-'            .HoverShadowColor = SystemColors.ButtonShadow
-'            .HoverShadowPosition = KzAlign.RightBottom
-
-'            .SelectedFrameWidth = 1
-'            .SelectedFrameColor = SystemColors.ActiveBorder
-'            .SelectedLineWidth = 1
-'            .SelectedForeColor = SystemColors.ControlText
-'            .SelectedFillColor = SystemColors.ControlDark
-'            .SelectedFont = SystemFonts.DefaultFont
-'            .SelectedShadowWidth = 0
-'            .SelectedShadowColor = SystemColors.ButtonShadow
-'            .SelectedShadowPosition = KzAlign.LeftTop
-'        End With
-'    End Sub
-
-'    Public Property Index As Integer
-'    Public Property Radius As Integer '= 0
-'    Public Property Margin As Padding '= New Padding(0, 0, 0, 0)
-'    Public Property Padding As Padding '= New Padding(0, 0, 0, 0)
-
-'    Public Property NormalFrameWidth As Integer '= 0
-'    Public Property NormalFrameColor As Color '= SystemColors.WindowFrame
-'    Public Property NormalLineWidth As Integer '= 1
-'    Public Property NormalForeColor As Color '= SystemColors.ControlText
-'    Public Property NormalFillColor As Color '= SystemColors.Control
-'    Public Property NormalFont As Font '= SystemFonts.DefaultFont
-
-'    Public Property HoverFrameWidth As Integer '= 0
-'    Public Property HoverFrameColor As Color '= SystemColors.WindowFrame
-'    Public Property HoverLineWidth As Integer '= 1
-'    Public Property HoverForeColor As Color '= SystemColors.HighlightText
-'    Public Property HoverFillColor As Color '= SystemColors.ControlLight
-'    Public Property HoverFont As Font '= SystemFonts.DefaultFont
-
-'    Public Property SelectedFrameWidth As Integer '= 1
-'    Public Property SelectedFrameColor As Color '= SystemColors.ActiveBorder
-'    Public Property SelectedLineWidth As Integer '= 1
-'    Public Property SelectedForeColor As Color '= SystemColors.ControlText
-'    Public Property SelectedFillColor As Color '= SystemColors.ControlDark
-'    Public Property SelectedFont As Font '= SystemFonts.DefaultFont
-
-'    Public Property NormalShadowWidth As Integer
-'    Public Property NormalShadowColor As Color
-'    Public Property NormalShadowPosition As KzAlign
-'    Public Property HoverShadowWidth As Integer
-'    Public Property HoverShadowColor As Color
-'    Public Property HoverShadowPosition As KzAlign
-'    Public Property SelectedShadowWidth As Integer
-'    Public Property SelectedShadowColor As Color
-'    Public Property SelectedShadowPosition As KzAlign
-
-'    Public ReadOnly Property NormalFramePen As Pen
-'        Get
-'            Return New Pen(NormalFrameColor, NormalFrameWidth)
-'        End Get
-'    End Property
-
-'    Public ReadOnly Property NormalForePen As Pen
-'        Get
-'            Return New Pen(NormalForeColor, NormalLineWidth)
-'        End Get
-'    End Property
-
-'    Public ReadOnly Property NormalFillBrush As Brush
-'        Get
-'            Return New SolidBrush(NormalFillColor)
-'        End Get
-'    End Property
-
-'    Public ReadOnly Property NormalForeBrush As Brush
-'        Get
-'            Return New SolidBrush(NormalForeColor)
-'        End Get
-'    End Property
-
-'    Public ReadOnly Property NormalShadowBrush As Brush
-'        Get
-'            Return New SolidBrush(NormalShadowColor)
-'        End Get
-'    End Property
-
-'    Public ReadOnly Property HoverFramePen As Pen
-'        Get
-'            Return New Pen(HoverFrameColor, HoverFrameWidth)
-'        End Get
-'    End Property
-
-'    Public ReadOnly Property HoverForePen As Pen
-'        Get
-'            Return New Pen(HoverForeColor, HoverLineWidth)
-'        End Get
-'    End Property
-
-'    Public ReadOnly Property HoverFillBrush As Brush
-'        Get
-'            Return New SolidBrush(HoverFillColor)
-'        End Get
-'    End Property
-
-'    Public ReadOnly Property HoverForeBrush As Brush
-'        Get
-'            Return New SolidBrush(HoverForeColor)
-'        End Get
-'    End Property
-
-'    Public ReadOnly Property HoverShadowBrush As Brush
-'        Get
-'            Return New SolidBrush(HoverShadowColor)
-'        End Get
-'    End Property
-
-'    Public ReadOnly Property SelectedFramePen As Pen
-'        Get
-'            Return New Pen(SelectedFrameColor, SelectedFrameWidth)
-'        End Get
-'    End Property
-
-'    Public ReadOnly Property SelectedForePen As Pen
-'        Get
-'            Return New Pen(SelectedForeColor, SelectedLineWidth)
-'        End Get
-'    End Property
-
-'    Public ReadOnly Property SelectedFillBrush As Brush
-'        Get
-'            Return New SolidBrush(SelectedFillColor)
-'        End Get
-'    End Property
-
-'    Public ReadOnly Property SelectedForeBrush As Brush
-'        Get
-'            Return New SolidBrush(SelectedForeColor)
-'        End Get
-'    End Property
-
-'    Public ReadOnly Property SelectedShadowBrush As Brush
-'        Get
-'            Return New SolidBrush(SelectedShadowColor)
-'        End Get
-'    End Property
-'End Structure 'KzDrawingStyle
-
-Public Structure KzInputItem
-    Public Property Label As String
-    Public Property PresetText As String
-    Public Property ToolTipText As String
-    Public Property ShowClearButton As Boolean
-    Public Property ShowFunctionButton As Boolean
-    Public Property InputResult As Object
-End Structure 'InputItem
 
 Public Structure KzRange
     Public Sub New(fromIndex As Integer, toIndex As Integer)

@@ -69,7 +69,6 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -97,14 +96,16 @@
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="AppPublic.vb" />
+    <Compile Include="KzAprsDialog.Designer.vb">
+      <DependentUpon>KzAprsDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="KzAprsDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="LibraryDeclaration.vb" />
+    <Compile Include="LibraryFunctions.vb" />
+    <Compile Include="LibraryPainting.vb" />
     <Compile Include="LibraryPanels.vb" />
-    <Compile Include="KzInputListPanel.Designer.vb">
-      <DependentUpon>KzInputListPanel.vb</DependentUpon>
-    </Compile>
-    <Compile Include="KzInputListPanel.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="StylesForm.Designer.vb">
       <DependentUpon>StylesForm.vb</DependentUpon>
     </Compile>
@@ -148,6 +149,12 @@
     <Compile Include="StartForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="TestSettingTab.Designer.vb">
+      <DependentUpon>TestSettingTab.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TestSettingTab.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="EditorForm.resx">
@@ -156,8 +163,8 @@
     <EmbeddedResource Include="EndForm.resx">
       <DependentUpon>EndForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="KzInputListPanel.resx">
-      <DependentUpon>KzInputListPanel.vb</DependentUpon>
+    <EmbeddedResource Include="KzAprsDialog.resx">
+      <DependentUpon>KzAprsDialog.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StylesForm.resx">
       <DependentUpon>StylesForm.vb</DependentUpon>
@@ -170,6 +177,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StartForm.resx">
       <DependentUpon>StartForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestSettingTab.resx">
+      <DependentUpon>TestSettingTab.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -184,7 +194,6 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
-    <None Include="UIKeywords.kzlst" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

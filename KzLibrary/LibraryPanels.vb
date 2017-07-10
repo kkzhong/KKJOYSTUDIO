@@ -1,6 +1,11 @@
 ﻿Imports KzLibrary.KzConstants
+Imports System.Drawing.Text
 
 Public Class KzInputPanel
+
+End Class
+
+Public Class KzInputItem
 
 End Class
 
@@ -69,51 +74,74 @@ End Class
 Public Class KzFontListPanel
     Inherits FlowLayoutPanel
 
+    Dim iByFont As Boolean
+
     Public Sub New()
         FlowDirection = FlowDirection.TopDown
+        WrapContents = False
         AutoScroll = True
+        Padding = New Padding(0)
+
+        iByFont = True
         SetList()
     End Sub
 
+    Public Property ShowNameByFont As Boolean
+        Get
+            Return iByFont
+        End Get
+        Set(value As Boolean)
+            iByFont = value
+            SetList()
+        End Set
+    End Property
+
+    Public Property ExceptedList As String() = {}
+
     Private Sub SetList()
         Dim btn As Button
-        Dim ffs() As System.Windows.Media.FontFamily = System.Windows.Media.Fonts.SystemFontFamilies
-        For Each ff As System.Windows.Media.FontFamily In ffs
+        Dim fmls As FontFamily() = (New InstalledFontCollection).Families
+        Me.SuspendLayout()
+        Controls.Clear()
+
+        For Each fml As FontFamily In fmls
+
             btn = New Button With {
-                .Dock = DockStyle.Top,
-                .Text = ff.FamilyNames.ToString,  ' ff.Name,
-            .Font = New Font(ff.FamilyNames.ToString, 10.5, FontStyle.Regular)}
+                .Height = 30,
+                .Width = ClientRectangle.Width,
+                .Margin = New Padding(0),
+                .Text = fml.Name,
+                .TextAlign = ContentAlignment.MiddleLeft,
+                .BackColor = Color.WhiteSmoke}
+
+            If iByFont Then btn.Font = New Font(fml, btn.Font.Size, btn.Font.Style)
+
             AddHandler btn.Click, AddressOf FontSelected
-            Me.Controls.Add(btn)
+            Controls.Add(btn)
         Next
+        Me.ResumeLayout()
     End Sub
 
     Private Sub FontSelected(sender As Object, e As EventArgs)
         Try
-            If Me.Tag.GetType = GetType(TextBox) Then
-                Dim t As TextBox = CType(Me.Tag, TextBox)
+            If Tag.GetType = GetType(TextBox) Then
+                Dim t As TextBox = CType(Tag, TextBox)
                 Dim b As Button = CType(sender, Button)
-                t.Text = b.Font.Name
-                t.Tag = b.Font
+                t.Text = b.Font.Name '.FontFamily.GetName(0)
+                t.Tag = b.Font.FontFamily
             End If
         Catch ex As Exception
 
         End Try
     End Sub
-End Class
 
-Public Class KzFlagsPanel
-    Inherits FlowLayoutPanel
-
-    Public Sub New()
-        FlowDirection = FlowDirection.TopDown
-        AutoScroll = True
-
+    Protected Overrides Sub OnSizeChanged(e As EventArgs)
+        MyBase.OnSizeChanged(e)
+        For Each btn As Button In Me.Controls
+            btn.Width = ClientRectangle.Width
+        Next
     End Sub
-
-    Public Property KeywordList As List(Of String)
-
-End Class
+End Class 'KzFontListPanel
 
 Public Class KzFlagSelector
     Inherits CheckedListBox
