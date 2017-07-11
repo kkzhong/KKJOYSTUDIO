@@ -149,10 +149,16 @@
     <Compile Include="StartForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TestSettingTab.Designer.vb">
+    <Compile Include="TestObjects\TestAprsTab.Designer.vb">
+      <DependentUpon>TestAprsTab.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TestObjects\TestAprsTab.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TestObjects\TestSettingTab.Designer.vb">
       <DependentUpon>TestSettingTab.vb</DependentUpon>
     </Compile>
-    <Compile Include="TestSettingTab.vb">
+    <Compile Include="TestObjects\TestSettingTab.vb">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
@@ -178,7 +184,10 @@
     <EmbeddedResource Include="StartForm.resx">
       <DependentUpon>StartForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TestSettingTab.resx">
+    <EmbeddedResource Include="TestObjects\TestAprsTab.resx">
+      <DependentUpon>TestAprsTab.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestObjects\TestSettingTab.resx">
       <DependentUpon>TestSettingTab.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

@@ -47,9 +47,9 @@ Partial Class TestSettingTab
         'RootPanel
         '
         Me.RootPanel.ColumnCount = 3
-        Me.RootPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
-        Me.RootPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.RootPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
+        Me.RootPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+        Me.RootPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.RootPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.RootPanel.Controls.Add(Me.BorderSizeLabel, 0, 1)
         Me.RootPanel.Controls.Add(Me.BorderColorLabel, 0, 2)
         Me.RootPanel.Controls.Add(Me.BackColorLabel, 0, 3)
@@ -80,7 +80,7 @@ Partial Class TestSettingTab
         Me.RootPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26.0!))
         Me.RootPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26.0!))
         Me.RootPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.RootPanel.Size = New System.Drawing.Size(277, 253)
+        Me.RootPanel.Size = New System.Drawing.Size(280, 250)
         Me.RootPanel.TabIndex = 0
         '
         'BorderSizeLabel
@@ -89,7 +89,7 @@ Partial Class TestSettingTab
         Me.BorderSizeLabel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BorderSizeLabel.Location = New System.Drawing.Point(3, 26)
         Me.BorderSizeLabel.Name = "BorderSizeLabel"
-        Me.BorderSizeLabel.Size = New System.Drawing.Size(114, 26)
+        Me.BorderSizeLabel.Size = New System.Drawing.Size(94, 26)
         Me.BorderSizeLabel.TabIndex = 0
         Me.BorderSizeLabel.Text = "BorderSize"
         Me.BorderSizeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -100,7 +100,7 @@ Partial Class TestSettingTab
         Me.BorderColorLabel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BorderColorLabel.Location = New System.Drawing.Point(3, 52)
         Me.BorderColorLabel.Name = "BorderColorLabel"
-        Me.BorderColorLabel.Size = New System.Drawing.Size(114, 26)
+        Me.BorderColorLabel.Size = New System.Drawing.Size(94, 26)
         Me.BorderColorLabel.TabIndex = 1
         Me.BorderColorLabel.Text = "BorderColor"
         Me.BorderColorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -111,7 +111,7 @@ Partial Class TestSettingTab
         Me.BackColorLabel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BackColorLabel.Location = New System.Drawing.Point(3, 78)
         Me.BackColorLabel.Name = "BackColorLabel"
-        Me.BackColorLabel.Size = New System.Drawing.Size(114, 26)
+        Me.BackColorLabel.Size = New System.Drawing.Size(94, 26)
         Me.BackColorLabel.TabIndex = 2
         Me.BackColorLabel.Text = "BackColor"
         Me.BackColorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -122,7 +122,7 @@ Partial Class TestSettingTab
         Me.ForeLineSizeLabel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ForeLineSizeLabel.Location = New System.Drawing.Point(3, 104)
         Me.ForeLineSizeLabel.Name = "ForeLineSizeLabel"
-        Me.ForeLineSizeLabel.Size = New System.Drawing.Size(114, 26)
+        Me.ForeLineSizeLabel.Size = New System.Drawing.Size(94, 26)
         Me.ForeLineSizeLabel.TabIndex = 3
         Me.ForeLineSizeLabel.Text = "ForeLineSize"
         Me.ForeLineSizeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -133,7 +133,7 @@ Partial Class TestSettingTab
         Me.ForeColorLabel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ForeColorLabel.Location = New System.Drawing.Point(3, 130)
         Me.ForeColorLabel.Name = "ForeColorLabel"
-        Me.ForeColorLabel.Size = New System.Drawing.Size(114, 26)
+        Me.ForeColorLabel.Size = New System.Drawing.Size(94, 26)
         Me.ForeColorLabel.TabIndex = 4
         Me.ForeColorLabel.Text = "ForeColor"
         Me.ForeColorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -144,7 +144,7 @@ Partial Class TestSettingTab
         Me.ShadowDirectionLabel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ShadowDirectionLabel.Location = New System.Drawing.Point(3, 156)
         Me.ShadowDirectionLabel.Name = "ShadowDirectionLabel"
-        Me.ShadowDirectionLabel.Size = New System.Drawing.Size(114, 26)
+        Me.ShadowDirectionLabel.Size = New System.Drawing.Size(94, 26)
         Me.ShadowDirectionLabel.TabIndex = 5
         Me.ShadowDirectionLabel.Text = "ShadowDirection"
         Me.ShadowDirectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -155,7 +155,7 @@ Partial Class TestSettingTab
         Me.ShadowColorLabel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ShadowColorLabel.Location = New System.Drawing.Point(3, 182)
         Me.ShadowColorLabel.Name = "ShadowColorLabel"
-        Me.ShadowColorLabel.Size = New System.Drawing.Size(114, 26)
+        Me.ShadowColorLabel.Size = New System.Drawing.Size(94, 26)
         Me.ShadowColorLabel.TabIndex = 6
         Me.ShadowColorLabel.Text = "ShadowColor"
         Me.ShadowColorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -168,7 +168,7 @@ Partial Class TestSettingTab
         Me.TitleLabel.Font = New System.Drawing.Font("Microsoft YaHei UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.TitleLabel.Location = New System.Drawing.Point(3, 0)
         Me.TitleLabel.Name = "TitleLabel"
-        Me.TitleLabel.Size = New System.Drawing.Size(246, 26)
+        Me.TitleLabel.Size = New System.Drawing.Size(184, 26)
         Me.TitleLabel.TabIndex = 7
         Me.TitleLabel.Text = "Title"
         Me.TitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -176,75 +176,80 @@ Partial Class TestSettingTab
         'BorderSizeUpDown
         '
         Me.BorderSizeUpDown.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.BorderSizeUpDown.Location = New System.Drawing.Point(121, 27)
+        Me.BorderSizeUpDown.Location = New System.Drawing.Point(101, 27)
         Me.BorderSizeUpDown.Margin = New System.Windows.Forms.Padding(1)
         Me.BorderSizeUpDown.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.BorderSizeUpDown.Name = "BorderSizeUpDown"
-        Me.BorderSizeUpDown.Size = New System.Drawing.Size(130, 23)
+        Me.BorderSizeUpDown.Size = New System.Drawing.Size(88, 23)
         Me.BorderSizeUpDown.TabIndex = 8
         Me.BorderSizeUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'BorderColorTBox
         '
+        Me.RootPanel.SetColumnSpan(Me.BorderColorTBox, 2)
         Me.BorderColorTBox.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.BorderColorTBox.Location = New System.Drawing.Point(121, 53)
+        Me.BorderColorTBox.Location = New System.Drawing.Point(101, 53)
         Me.BorderColorTBox.Margin = New System.Windows.Forms.Padding(1)
         Me.BorderColorTBox.Name = "BorderColorTBox"
-        Me.BorderColorTBox.Size = New System.Drawing.Size(130, 23)
+        Me.BorderColorTBox.Size = New System.Drawing.Size(178, 23)
         Me.BorderColorTBox.TabIndex = 9
         '
         'BackColorTBox
         '
+        Me.RootPanel.SetColumnSpan(Me.BackColorTBox, 2)
         Me.BackColorTBox.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.BackColorTBox.Location = New System.Drawing.Point(121, 79)
+        Me.BackColorTBox.Location = New System.Drawing.Point(101, 79)
         Me.BackColorTBox.Margin = New System.Windows.Forms.Padding(1)
         Me.BackColorTBox.Name = "BackColorTBox"
-        Me.BackColorTBox.Size = New System.Drawing.Size(130, 23)
+        Me.BackColorTBox.Size = New System.Drawing.Size(178, 23)
         Me.BackColorTBox.TabIndex = 10
         '
         'ForeLineSizeUpDown
         '
         Me.ForeLineSizeUpDown.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ForeLineSizeUpDown.Location = New System.Drawing.Point(121, 105)
+        Me.ForeLineSizeUpDown.Location = New System.Drawing.Point(101, 105)
         Me.ForeLineSizeUpDown.Margin = New System.Windows.Forms.Padding(1)
         Me.ForeLineSizeUpDown.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.ForeLineSizeUpDown.Name = "ForeLineSizeUpDown"
-        Me.ForeLineSizeUpDown.Size = New System.Drawing.Size(130, 23)
+        Me.ForeLineSizeUpDown.Size = New System.Drawing.Size(88, 23)
         Me.ForeLineSizeUpDown.TabIndex = 11
         Me.ForeLineSizeUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'ForeColorTBox
         '
+        Me.RootPanel.SetColumnSpan(Me.ForeColorTBox, 2)
         Me.ForeColorTBox.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ForeColorTBox.Location = New System.Drawing.Point(121, 131)
+        Me.ForeColorTBox.Location = New System.Drawing.Point(101, 131)
         Me.ForeColorTBox.Margin = New System.Windows.Forms.Padding(1)
         Me.ForeColorTBox.Name = "ForeColorTBox"
-        Me.ForeColorTBox.Size = New System.Drawing.Size(130, 23)
+        Me.ForeColorTBox.Size = New System.Drawing.Size(178, 23)
         Me.ForeColorTBox.TabIndex = 12
         '
         'ShadowDirectionCBox
         '
+        Me.RootPanel.SetColumnSpan(Me.ShadowDirectionCBox, 2)
         Me.ShadowDirectionCBox.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ShadowDirectionCBox.FormattingEnabled = True
-        Me.ShadowDirectionCBox.Location = New System.Drawing.Point(121, 156)
+        Me.ShadowDirectionCBox.Location = New System.Drawing.Point(101, 156)
         Me.ShadowDirectionCBox.Margin = New System.Windows.Forms.Padding(1, 0, 1, 0)
         Me.ShadowDirectionCBox.Name = "ShadowDirectionCBox"
-        Me.ShadowDirectionCBox.Size = New System.Drawing.Size(130, 25)
+        Me.ShadowDirectionCBox.Size = New System.Drawing.Size(178, 25)
         Me.ShadowDirectionCBox.TabIndex = 13
         '
         'ShadowColorTBox
         '
+        Me.RootPanel.SetColumnSpan(Me.ShadowColorTBox, 2)
         Me.ShadowColorTBox.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ShadowColorTBox.Location = New System.Drawing.Point(121, 183)
+        Me.ShadowColorTBox.Location = New System.Drawing.Point(101, 183)
         Me.ShadowColorTBox.Margin = New System.Windows.Forms.Padding(1)
         Me.ShadowColorTBox.Name = "ShadowColorTBox"
-        Me.ShadowColorTBox.Size = New System.Drawing.Size(130, 23)
+        Me.ShadowColorTBox.Size = New System.Drawing.Size(178, 23)
         Me.ShadowColorTBox.TabIndex = 14
         '
         'ResetDefaultButton
         '
-        Me.ResetDefaultButton.Dock = System.Windows.Forms.DockStyle.Left
-        Me.ResetDefaultButton.Location = New System.Drawing.Point(253, 1)
+        Me.ResetDefaultButton.Dock = System.Windows.Forms.DockStyle.Right
+        Me.ResetDefaultButton.Location = New System.Drawing.Point(256, 1)
         Me.ResetDefaultButton.Margin = New System.Windows.Forms.Padding(1)
         Me.ResetDefaultButton.Name = "ResetDefaultButton"
         Me.ResetDefaultButton.Size = New System.Drawing.Size(23, 24)
@@ -260,7 +265,7 @@ Partial Class TestSettingTab
         Me.Font = New System.Drawing.Font("Microsoft YaHei UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "TestSettingTab"
-        Me.Size = New System.Drawing.Size(277, 253)
+        Me.Size = New System.Drawing.Size(280, 250)
         Me.RootPanel.ResumeLayout(False)
         Me.RootPanel.PerformLayout()
         CType(Me.BorderSizeUpDown, System.ComponentModel.ISupportInitialize).EndInit()

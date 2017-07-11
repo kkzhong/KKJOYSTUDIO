@@ -12,8 +12,8 @@
                 Case 3 : tp.TitleLabel.Text = "Checked"
             End Select
 
-            KzTabs.AddTab(KzItemPosition.LastItem, tp)
-            KzTabs.SelectedIndex = 0
+            AprTabs.AddTab(KzItemPosition.LastItem, tp)
+            AprTabs.SelectedIndex = 0
         Next
     End Sub
 

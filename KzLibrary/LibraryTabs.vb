@@ -32,6 +32,7 @@ Public Class KzTabControl
     Public Property OpenSelectedTabUnderline As Boolean = False '
     Public Property ShowCloseButtonOnTab As Boolean = True '
     Public Property ShowCloseOnUnselectedTabs As Boolean = False
+    Public Property ShowAddOnSelectedTab As Boolean = False
 
     Public Property TabAppearances As KzAppearances
     Public Property BtnAppearances As KzAppearances
@@ -395,6 +396,422 @@ Public Structure KzDrawingStyle
 End Structure 'KzDrawingStyle
 
 
+Public Class KzAprsTab
+    Inherits TabPage
+
+    Dim Aprs() As String = {
+        "Name", "BorderRadius", "ShadowWidth", "ShadowShift",
+        "FontFamily", "FontSize", "FontStyle"}
+    Dim Apr() As String = {
+        "BorderSize", "BorderColor", "BackColor", "ForeLineSize",
+        "ForeColor", "ShadowDirection", "ShadowColor"}
+    Dim fSizes() As Single = {
+        5, 5.5, 6.5, 7.5, 8, 9, 10, 10.5, 11, 12,
+        14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72}
+    Dim iApr As KzAppearance
+    Dim iAprs As KzAppearances
+    Dim iStatus As Boolean
+
+    Friend WithEvents RootPanel As TableLayoutPanel
+    Friend WithEvents ResetDefaultButton As Button
+    Friend WithEvents TitleLabel As Label
+
+    Friend WithEvents NameTBox As TextBox
+    Friend WithEvents BorderRadiusUD As NumericUpDown
+    Friend WithEvents ShadowWidthUD As NumericUpDown
+    Friend WithEvents ShadowShiftCheck As CheckBox
+    Friend WithEvents FontFamilyTBox As TextBox
+    Friend WithEvents FontStyleCBox As ComboBox
+    Friend WithEvents FontSizeCBox As ComboBox
+
+    Friend WithEvents BorderSizeUpDown As NumericUpDown
+    Friend WithEvents BorderColorTBox As TextBox
+    Friend WithEvents BackColorTBox As TextBox
+    Friend WithEvents ForeLineSizeUpDown As NumericUpDown
+    Friend WithEvents ForeColorTBox As TextBox
+    Friend WithEvents ShadowDirectionCBox As ComboBox
+    Friend WithEvents ShadowColorTBox As TextBox
+
+    Private Sub InitializeComponent()
+        Me.RootPanel = New System.Windows.Forms.TableLayoutPanel()
+        Me.TitleLabel = New System.Windows.Forms.Label()
+        Me.ResetDefaultButton = New System.Windows.Forms.Button()
+
+        Me.BorderSizeUpDown = New System.Windows.Forms.NumericUpDown()
+        Me.BorderColorTBox = New System.Windows.Forms.TextBox()
+        Me.BackColorTBox = New System.Windows.Forms.TextBox()
+        Me.ForeLineSizeUpDown = New System.Windows.Forms.NumericUpDown()
+        Me.ForeColorTBox = New System.Windows.Forms.TextBox()
+        Me.ShadowDirectionCBox = New System.Windows.Forms.ComboBox()
+        Me.ShadowColorTBox = New System.Windows.Forms.TextBox()
+
+        Me.NameTBox = New System.Windows.Forms.TextBox()
+        Me.BorderRadiusUD = New System.Windows.Forms.NumericUpDown()
+        Me.ShadowWidthUD = New System.Windows.Forms.NumericUpDown()
+        Me.ShadowShiftCheck = New System.Windows.Forms.CheckBox()
+        Me.FontFamilyTBox = New System.Windows.Forms.TextBox()
+        Me.FontStyleCBox = New System.Windows.Forms.ComboBox()
+        Me.FontSizeCBox = New System.Windows.Forms.ComboBox()
+
+        Me.RootPanel.SuspendLayout()
+        CType(Me.BorderRadiusUD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ShadowWidthUD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BorderSizeUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ForeLineSizeUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
+        '
+        'RootPanel
+        '
+        Me.RootPanel.ColumnCount = 3
+        Me.RootPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
+        Me.RootPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.RootPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.RootPanel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.RootPanel.Location = New System.Drawing.Point(0, 0)
+        Me.RootPanel.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.RootPanel.Name = "RootPanel"
+        Me.RootPanel.RowCount = 9
+        Me.RootPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26.0!))
+        Me.RootPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26.0!))
+        Me.RootPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26.0!))
+        Me.RootPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26.0!))
+        Me.RootPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26.0!))
+        Me.RootPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26.0!))
+        Me.RootPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26.0!))
+        Me.RootPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26.0!))
+        Me.RootPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.RootPanel.Size = New System.Drawing.Size(277, 253)
+        Me.RootPanel.TabIndex = 0
+        '
+        'TitleLabel
+        '
+        Me.TitleLabel.AutoSize = True
+        Me.RootPanel.SetColumnSpan(Me.TitleLabel, 2)
+        Me.TitleLabel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TitleLabel.Font = New System.Drawing.Font("Microsoft YaHei UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.TitleLabel.Location = New System.Drawing.Point(3, 0)
+        Me.TitleLabel.Name = "TitleLabel"
+        Me.TitleLabel.Size = New System.Drawing.Size(192, 26)
+        Me.TitleLabel.TabIndex = 7
+        Me.TitleLabel.Text = "Title"
+        Me.TitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.RootPanel.Controls.Add(Me.TitleLabel, 0, 0)
+        '
+        'ResetDefaultButton
+        '
+        Me.ResetDefaultButton.Dock = System.Windows.Forms.DockStyle.Right
+        Me.ResetDefaultButton.Location = New System.Drawing.Point(253, 1)
+        Me.ResetDefaultButton.Margin = New System.Windows.Forms.Padding(1)
+        Me.ResetDefaultButton.Name = "ResetDefaultButton"
+        Me.ResetDefaultButton.Size = New System.Drawing.Size(23, 24)
+        Me.ResetDefaultButton.TabIndex = 15
+        Me.ResetDefaultButton.Text = "R"
+        Me.ResetDefaultButton.UseVisualStyleBackColor = True
+        Me.RootPanel.Controls.Add(Me.ResetDefaultButton, 2, 0)
+
+        Dim l As Label
+        For i As Integer = 0 To 6
+            l = New Label
+            l.AutoSize = True
+            l.Dock = System.Windows.Forms.DockStyle.Fill
+            l.Location = New System.Drawing.Point(3, (i + 1) * 26)
+            l.Name = If(iStatus, Apr(i), Aprs(i)) & "Label" ' "BorderSizeLabel"
+            l.Size = New System.Drawing.Size(114, 26)
+            l.TabIndex = 0
+            l.Text = If(iStatus, Apr(i), Aprs(i))
+            l.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+            Me.RootPanel.Controls.Add(l, 0, (i + 1))
+        Next
+
+        If iStatus Then
+            '
+            'BorderSizeUpDown
+            '
+            Me.BorderSizeUpDown.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.BorderSizeUpDown.Location = New System.Drawing.Point(121, 27)
+            Me.BorderSizeUpDown.Margin = New System.Windows.Forms.Padding(1)
+            Me.BorderSizeUpDown.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
+            Me.BorderSizeUpDown.Name = "BorderSizeUpDown"
+            Me.BorderSizeUpDown.Size = New System.Drawing.Size(76, 23)
+            Me.BorderSizeUpDown.TabIndex = 8
+            Me.BorderSizeUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+            Me.RootPanel.Controls.Add(Me.BorderSizeUpDown, 1, 1)
+            '
+            'BorderColorTBox
+            '
+            Me.RootPanel.SetColumnSpan(Me.BorderColorTBox, 2)
+            Me.BorderColorTBox.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.BorderColorTBox.Location = New System.Drawing.Point(121, 53)
+            Me.BorderColorTBox.Margin = New System.Windows.Forms.Padding(1)
+            Me.BorderColorTBox.Name = "BorderColorTBox"
+            Me.BorderColorTBox.Size = New System.Drawing.Size(155, 23)
+            Me.BorderColorTBox.TabIndex = 9
+            Me.RootPanel.Controls.Add(Me.BorderColorTBox, 1, 2)
+            '
+            'BackColorTBox
+            '
+            Me.RootPanel.SetColumnSpan(Me.BackColorTBox, 2)
+            Me.BackColorTBox.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.BackColorTBox.Location = New System.Drawing.Point(121, 79)
+            Me.BackColorTBox.Margin = New System.Windows.Forms.Padding(1)
+            Me.BackColorTBox.Name = "BackColorTBox"
+            Me.BackColorTBox.Size = New System.Drawing.Size(155, 23)
+            Me.BackColorTBox.TabIndex = 10
+            Me.RootPanel.Controls.Add(Me.BackColorTBox, 1, 3)
+            '
+            'ForeLineSizeUpDown
+            '
+            Me.ForeLineSizeUpDown.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.ForeLineSizeUpDown.Location = New System.Drawing.Point(121, 105)
+            Me.ForeLineSizeUpDown.Margin = New System.Windows.Forms.Padding(1)
+            Me.ForeLineSizeUpDown.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
+            Me.ForeLineSizeUpDown.Name = "ForeLineSizeUpDown"
+            Me.ForeLineSizeUpDown.Size = New System.Drawing.Size(76, 23)
+            Me.ForeLineSizeUpDown.TabIndex = 11
+            Me.ForeLineSizeUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+            Me.RootPanel.Controls.Add(Me.ForeLineSizeUpDown, 1, 4)
+            '
+            'ForeColorTBox
+            '
+            Me.RootPanel.SetColumnSpan(Me.ForeColorTBox, 2)
+            Me.ForeColorTBox.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.ForeColorTBox.Location = New System.Drawing.Point(121, 131)
+            Me.ForeColorTBox.Margin = New System.Windows.Forms.Padding(1)
+            Me.ForeColorTBox.Name = "ForeColorTBox"
+            Me.ForeColorTBox.Size = New System.Drawing.Size(155, 23)
+            Me.ForeColorTBox.TabIndex = 12
+            Me.RootPanel.Controls.Add(Me.ForeColorTBox, 1, 5)
+            '
+            'ShadowDirectionCBox
+            '
+            Me.RootPanel.SetColumnSpan(Me.ShadowDirectionCBox, 2)
+            Me.ShadowDirectionCBox.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.ShadowDirectionCBox.FormattingEnabled = True
+            Me.ShadowDirectionCBox.Location = New System.Drawing.Point(121, 156)
+            Me.ShadowDirectionCBox.Margin = New System.Windows.Forms.Padding(1, 0, 1, 0)
+            Me.ShadowDirectionCBox.Name = "ShadowDirectionCBox"
+            Me.ShadowDirectionCBox.Size = New System.Drawing.Size(155, 25)
+            Me.ShadowDirectionCBox.TabIndex = 13
+            With ShadowDirectionCBox
+                Dim ub As Integer = [Enum].GetNames(GetType(KzSidePosition)).Count - 1
+                For i As Integer = 0 To ub
+                    .Items.Add(CType(i, KzSidePosition))
+                Next
+            End With
+            Me.RootPanel.Controls.Add(Me.ShadowDirectionCBox, 1, 6)
+            '
+            'ShadowColorTBox
+            '
+            Me.RootPanel.SetColumnSpan(Me.ShadowColorTBox, 2)
+            Me.ShadowColorTBox.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.ShadowColorTBox.Location = New System.Drawing.Point(121, 183)
+            Me.ShadowColorTBox.Margin = New System.Windows.Forms.Padding(1)
+            Me.ShadowColorTBox.Name = "ShadowColorTBox"
+            Me.ShadowColorTBox.Size = New System.Drawing.Size(155, 23)
+            Me.ShadowColorTBox.TabIndex = 14
+            Me.RootPanel.Controls.Add(Me.ShadowColorTBox, 1, 7)
+        Else
+            '
+            'NameTBox
+            '
+            Me.RootPanel.SetColumnSpan(Me.NameTBox, 2)
+            Me.NameTBox.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.NameTBox.Location = New System.Drawing.Point(101, 27)
+            Me.NameTBox.Margin = New System.Windows.Forms.Padding(1)
+            Me.NameTBox.Name = "NameTBox"
+            Me.NameTBox.Size = New System.Drawing.Size(178, 23)
+            Me.NameTBox.TabIndex = 11
+            Me.RootPanel.Controls.Add(Me.NameTBox, 1, 1)
+            '
+            'BorderRadiusUD
+            '
+            Me.BorderRadiusUD.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.BorderRadiusUD.Location = New System.Drawing.Point(101, 53)
+            Me.BorderRadiusUD.Margin = New System.Windows.Forms.Padding(1)
+            Me.BorderRadiusUD.Maximum = New Decimal(New Integer() {50, 0, 0, 0})
+            Me.BorderRadiusUD.Name = "BorderRadiusUD"
+            Me.BorderRadiusUD.Size = New System.Drawing.Size(88, 23)
+            Me.BorderRadiusUD.TabIndex = 12
+            Me.BorderRadiusUD.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+            Me.RootPanel.Controls.Add(Me.BorderRadiusUD, 1, 2)
+            '
+            'ShadowWidthUD
+            '
+            Me.ShadowWidthUD.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.ShadowWidthUD.Location = New System.Drawing.Point(101, 79)
+            Me.ShadowWidthUD.Margin = New System.Windows.Forms.Padding(1)
+            Me.ShadowWidthUD.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
+            Me.ShadowWidthUD.Name = "ShadowWidthUD"
+            Me.ShadowWidthUD.Size = New System.Drawing.Size(88, 23)
+            Me.ShadowWidthUD.TabIndex = 13
+            Me.ShadowWidthUD.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+            Me.RootPanel.Controls.Add(Me.ShadowWidthUD, 1, 3)
+            '
+            'ShadowShiftCheck
+            '
+            Me.ShadowShiftCheck.AutoSize = True
+            Me.ShadowShiftCheck.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.ShadowShiftCheck.Location = New System.Drawing.Point(103, 107)
+            Me.ShadowShiftCheck.Name = "ShadowShiftCheck"
+            Me.ShadowShiftCheck.Size = New System.Drawing.Size(84, 20)
+            Me.ShadowShiftCheck.TabIndex = 14
+            Me.ShadowShiftCheck.UseVisualStyleBackColor = True
+            Me.RootPanel.Controls.Add(Me.ShadowShiftCheck, 1, 4)
+            '
+            'FontFamilyTBox
+            '
+            Me.RootPanel.SetColumnSpan(Me.FontFamilyTBox, 2)
+            Me.FontFamilyTBox.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.FontFamilyTBox.Location = New System.Drawing.Point(101, 131)
+            Me.FontFamilyTBox.Margin = New System.Windows.Forms.Padding(1)
+            Me.FontFamilyTBox.Name = "FontFamilyTBox"
+            Me.FontFamilyTBox.Size = New System.Drawing.Size(178, 23)
+            Me.FontFamilyTBox.TabIndex = 15
+            Me.RootPanel.Controls.Add(Me.FontFamilyTBox, 1, 5)
+            '
+            'FontStyleCBox
+            '
+            Me.FontStyleCBox.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.FontStyleCBox.FormattingEnabled = True
+            Me.FontStyleCBox.Location = New System.Drawing.Point(101, 156)
+            Me.FontStyleCBox.Margin = New System.Windows.Forms.Padding(1, 0, 1, 0)
+            Me.FontStyleCBox.Name = "FontStyleCBox"
+            Me.FontStyleCBox.Size = New System.Drawing.Size(88, 25)
+            Me.FontStyleCBox.TabIndex = 16
+            With FontStyleCBox
+                For i As Integer = 0 To 15
+                    .Items.Add(CType(i, FontStyle))
+                Next
+                .DropDownWidth = 128
+                .SelectedIndex = 0
+            End With
+            Me.RootPanel.Controls.Add(Me.FontStyleCBox, 1, 6)
+            '
+            'FontSizeCBox
+            '
+            Me.RootPanel.SetColumnSpan(Me.FontSizeCBox, 2)
+            Me.FontSizeCBox.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.FontSizeCBox.FormattingEnabled = True
+            Me.FontSizeCBox.Location = New System.Drawing.Point(101, 182)
+            Me.FontSizeCBox.Margin = New System.Windows.Forms.Padding(1, 0, 1, 0)
+            Me.FontSizeCBox.Name = "FontSizeCBox"
+            Me.FontSizeCBox.Size = New System.Drawing.Size(178, 25)
+            Me.FontSizeCBox.TabIndex = 17
+            With FontSizeCBox
+                For i As Integer = 0 To fSizes.GetUpperBound(0)
+                    .Items.Add(fSizes(i))
+                Next
+                .SelectedIndex = 7
+            End With
+            Me.RootPanel.Controls.Add(Me.FontSizeCBox, 1, 7)
+        End If
+        '
+        'KzAprsTab
+        '
+        Me.Controls.Add(Me.RootPanel)
+        Me.Font = New System.Drawing.Font("Microsoft YaHei UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.Name = "KzAprsTab"
+        Me.Size = New System.Drawing.Size(280, 250)
+        Me.RootPanel.ResumeLayout(False)
+        Me.RootPanel.PerformLayout()
+        CType(Me.BorderRadiusUD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ShadowWidthUD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BorderSizeUpDown, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ForeLineSizeUpDown, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
+    End Sub
+
+    Public Sub New(Optional ByStatus As Boolean = True)
+        iStatus = ByStatus
+        InitializeComponent()
+    End Sub
+
+    Public Property AObject As Object
+        Get
+            If iStatus Then
+                Return iApr
+            Else
+                Return iAprs
+            End If
+        End Get
+        Set(value As Object)
+            If iStatus And value.GetType = GetType(KzAppearance) Then
+                iApr = value
+            ElseIf Not iStatus And value.GetType = GetType(KzAppearances) Then
+                iAprs = value
+            End If
+            ObjectToUI()
+        End Set
+    End Property
+
+    Private Sub ObjectToUI()
+        If iStatus Then
+            BorderSizeUpDown.Value = iApr.BorderSize
+            BorderColorTBox.Text = GetColorName(iApr.BorderColor)
+            BackColorTBox.Text = GetColorName(iApr.BackColor)
+            ForeLineSizeUpDown.Value = iApr.ForeLineSize
+            ForeColorTBox.Text = GetColorName(iApr.ForeColor)
+            ShadowDirectionCBox.SelectedItem = iApr.ShadowDirection
+            ShadowColorTBox.Text = GetColorName(iApr.ShadowColor)
+        Else
+            NameTBox.Text = iAprs.Name
+            BorderRadiusUD.Value = iAprs.BorderRadius
+            ShadowWidthUD.Value = iAprs.ShadowWidth
+            ShadowShiftCheck.Checked = iAprs.ShadowShift
+            FontFamilyTBox.Text = iAprs.FontFamily.Name
+            FontStyleCBox.SelectedItem = iAprs.FontStyle
+            FontSizeCBox.SelectedItem = iAprs.FontSize
+        End If
+
+    End Sub
+
+    Private Sub UItoObject()
+        If iStatus Then
+            With iApr
+                .BorderSize = BorderSizeUpDown.Value
+                .BorderColor = GetColor(BorderColorTBox.Text)
+                .BackColor = GetColor(BackColorTBox.Text)
+                .ForeLineSize = ForeLineSizeUpDown.Value
+                .ForeColor = GetColor(ForeColorTBox.Text)
+                .ShadowDirection = ShadowDirectionCBox.SelectedItem
+                .ShadowColor = GetColor(ShadowColorTBox.Text)
+            End With
+        Else
+            With iAprs
+                .Name = NameTBox.Text
+                .BorderRadius = BorderRadiusUD.Value
+                .ShadowWidth = ShadowWidthUD.Value
+                .ShadowShift = ShadowShiftCheck.Checked
+                .FontFamily = New FontFamily(FontFamilyTBox.Text)
+                .FontStyle = FontSizeCBox.SelectedItem
+                .FontSize = FontSizeCBox.SelectedItem
+            End With
+        End If
+    End Sub
+
+    Private Function GetColorName(color As Color) As String
+        If color.IsEmpty Then
+            Return "[Empty]"
+        ElseIf color.IsNamedColor Then
+            Return color.Name
+        Else
+            Return ("&H" & Hex(color.ToArgb)).ToUpper
+        End If
+    End Function
+
+    Private Function GetColor(name As String) As Color
+        Try
+            If name.StartsWith("&H") Then
+                Return Color.FromArgb(name)
+            Else
+                Return Color.FromName(name)
+            End If
+        Catch ex As Exception
+            Return Color.FromArgb(0)
+        End Try
+    End Function
+End Class
 
 Public Class KzAppearancesTab
     Inherits TabPage
@@ -444,8 +861,8 @@ Public Class KzAppearancesTab
         '
         Me.RootPanel.ColumnCount = 3
         Me.RootPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
-        Me.RootPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.RootPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
+        Me.RootPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.RootPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.RootPanel.Controls.Add(Me.BorderSizeLabel, 0, 1)
         Me.RootPanel.Controls.Add(Me.BorderColorLabel, 0, 2)
         Me.RootPanel.Controls.Add(Me.BackColorLabel, 0, 3)
@@ -564,7 +981,7 @@ Public Class KzAppearancesTab
         Me.TitleLabel.Font = New System.Drawing.Font("Microsoft YaHei UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.TitleLabel.Location = New System.Drawing.Point(3, 0)
         Me.TitleLabel.Name = "TitleLabel"
-        Me.TitleLabel.Size = New System.Drawing.Size(246, 26)
+        Me.TitleLabel.Size = New System.Drawing.Size(192, 26)
         Me.TitleLabel.TabIndex = 7
         Me.TitleLabel.Text = "Title"
         Me.TitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -576,26 +993,28 @@ Public Class KzAppearancesTab
         Me.BorderSizeUpDown.Margin = New System.Windows.Forms.Padding(1)
         Me.BorderSizeUpDown.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.BorderSizeUpDown.Name = "BorderSizeUpDown"
-        Me.BorderSizeUpDown.Size = New System.Drawing.Size(130, 23)
+        Me.BorderSizeUpDown.Size = New System.Drawing.Size(76, 23)
         Me.BorderSizeUpDown.TabIndex = 8
         Me.BorderSizeUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'BorderColorTBox
         '
+        Me.RootPanel.SetColumnSpan(Me.BorderColorTBox, 2)
         Me.BorderColorTBox.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BorderColorTBox.Location = New System.Drawing.Point(121, 53)
         Me.BorderColorTBox.Margin = New System.Windows.Forms.Padding(1)
         Me.BorderColorTBox.Name = "BorderColorTBox"
-        Me.BorderColorTBox.Size = New System.Drawing.Size(130, 23)
+        Me.BorderColorTBox.Size = New System.Drawing.Size(155, 23)
         Me.BorderColorTBox.TabIndex = 9
         '
         'BackColorTBox
         '
+        Me.RootPanel.SetColumnSpan(Me.BackColorTBox, 2)
         Me.BackColorTBox.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BackColorTBox.Location = New System.Drawing.Point(121, 79)
         Me.BackColorTBox.Margin = New System.Windows.Forms.Padding(1)
         Me.BackColorTBox.Name = "BackColorTBox"
-        Me.BackColorTBox.Size = New System.Drawing.Size(130, 23)
+        Me.BackColorTBox.Size = New System.Drawing.Size(155, 23)
         Me.BackColorTBox.TabIndex = 10
         '
         'ForeLineSizeUpDown
@@ -605,41 +1024,44 @@ Public Class KzAppearancesTab
         Me.ForeLineSizeUpDown.Margin = New System.Windows.Forms.Padding(1)
         Me.ForeLineSizeUpDown.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.ForeLineSizeUpDown.Name = "ForeLineSizeUpDown"
-        Me.ForeLineSizeUpDown.Size = New System.Drawing.Size(130, 23)
+        Me.ForeLineSizeUpDown.Size = New System.Drawing.Size(76, 23)
         Me.ForeLineSizeUpDown.TabIndex = 11
         Me.ForeLineSizeUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'ForeColorTBox
         '
+        Me.RootPanel.SetColumnSpan(Me.ForeColorTBox, 2)
         Me.ForeColorTBox.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ForeColorTBox.Location = New System.Drawing.Point(121, 131)
         Me.ForeColorTBox.Margin = New System.Windows.Forms.Padding(1)
         Me.ForeColorTBox.Name = "ForeColorTBox"
-        Me.ForeColorTBox.Size = New System.Drawing.Size(130, 23)
+        Me.ForeColorTBox.Size = New System.Drawing.Size(155, 23)
         Me.ForeColorTBox.TabIndex = 12
         '
         'ShadowDirectionCBox
         '
+        Me.RootPanel.SetColumnSpan(Me.ShadowDirectionCBox, 2)
         Me.ShadowDirectionCBox.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ShadowDirectionCBox.FormattingEnabled = True
         Me.ShadowDirectionCBox.Location = New System.Drawing.Point(121, 156)
         Me.ShadowDirectionCBox.Margin = New System.Windows.Forms.Padding(1, 0, 1, 0)
         Me.ShadowDirectionCBox.Name = "ShadowDirectionCBox"
-        Me.ShadowDirectionCBox.Size = New System.Drawing.Size(130, 25)
+        Me.ShadowDirectionCBox.Size = New System.Drawing.Size(155, 25)
         Me.ShadowDirectionCBox.TabIndex = 13
         '
         'ShadowColorTBox
         '
+        Me.RootPanel.SetColumnSpan(Me.ShadowColorTBox, 2)
         Me.ShadowColorTBox.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ShadowColorTBox.Location = New System.Drawing.Point(121, 183)
         Me.ShadowColorTBox.Margin = New System.Windows.Forms.Padding(1)
         Me.ShadowColorTBox.Name = "ShadowColorTBox"
-        Me.ShadowColorTBox.Size = New System.Drawing.Size(130, 23)
+        Me.ShadowColorTBox.Size = New System.Drawing.Size(155, 23)
         Me.ShadowColorTBox.TabIndex = 14
         '
         'ResetDefaultButton
         '
-        Me.ResetDefaultButton.Dock = System.Windows.Forms.DockStyle.Left
+        Me.ResetDefaultButton.Dock = System.Windows.Forms.DockStyle.Right
         Me.ResetDefaultButton.Location = New System.Drawing.Point(253, 1)
         Me.ResetDefaultButton.Margin = New System.Windows.Forms.Padding(1)
         Me.ResetDefaultButton.Name = "ResetDefaultButton"
@@ -655,13 +1077,14 @@ Public Class KzAppearancesTab
         Me.Controls.Add(Me.RootPanel)
         Me.Font = New System.Drawing.Font("Microsoft YaHei UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Name = "NewSettingTab"
+        Me.Name = "TestSettingTab"
         Me.Size = New System.Drawing.Size(277, 253)
         Me.RootPanel.ResumeLayout(False)
         Me.RootPanel.PerformLayout()
         CType(Me.BorderSizeUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ForeLineSizeUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+
     End Sub
 
     Public iAprc As KzAppearance
