@@ -96,6 +96,7 @@
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="AppPublic.vb" />
+    <Compile Include="TempLibrary.vb" />
     <Compile Include="KzAprsDialog.Designer.vb">
       <DependentUpon>KzAprsDialog.vb</DependentUpon>
     </Compile>
@@ -155,11 +156,23 @@
     <Compile Include="TestObjects\TestAprsTab.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="TestObjects\TestColorPicker.Designer.vb">
+      <DependentUpon>TestColorPicker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TestObjects\TestColorPicker.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="TestObjects\TestSettingTab.Designer.vb">
       <DependentUpon>TestSettingTab.vb</DependentUpon>
     </Compile>
     <Compile Include="TestObjects\TestSettingTab.vb">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TestObjects\UCTestDialog.Designer.vb">
+      <DependentUpon>UCTestDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TestObjects\UCTestDialog.vb">
+      <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -187,8 +200,14 @@
     <EmbeddedResource Include="TestObjects\TestAprsTab.resx">
       <DependentUpon>TestAprsTab.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TestObjects\TestColorPicker.resx">
+      <DependentUpon>TestColorPicker.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TestObjects\TestSettingTab.resx">
       <DependentUpon>TestSettingTab.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestObjects\UCTestDialog.resx">
+      <DependentUpon>UCTestDialog.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

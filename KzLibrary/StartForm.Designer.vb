@@ -41,8 +41,9 @@ Partial Class StartForm
         Me.ExitMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TestMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StyleFormToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GenToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.ColorsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GenToolTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.UCTestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CommandsPanel.SuspendLayout()
         Me.StartMenu.SuspendLayout()
         Me.SuspendLayout()
@@ -213,7 +214,7 @@ Partial Class StartForm
         '
         'TestMenuItem
         '
-        Me.TestMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StyleFormToolStripMenuItem, Me.ColorsToolStripMenuItem})
+        Me.TestMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StyleFormToolStripMenuItem, Me.ColorsToolStripMenuItem, Me.UCTestToolStripMenuItem})
         Me.TestMenuItem.Name = "TestMenuItem"
         Me.TestMenuItem.Size = New System.Drawing.Size(44, 21)
         Me.TestMenuItem.Text = "Test"
@@ -229,6 +230,12 @@ Partial Class StartForm
         Me.ColorsToolStripMenuItem.Name = "ColorsToolStripMenuItem"
         Me.ColorsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ColorsToolStripMenuItem.Text = "Colors"
+        '
+        'UCTestToolStripMenuItem
+        '
+        Me.UCTestToolStripMenuItem.Name = "UCTestToolStripMenuItem"
+        Me.UCTestToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.UCTestToolStripMenuItem.Text = "UCTest"
         '
         'StartForm
         '
@@ -271,4 +278,5 @@ Partial Class StartForm
     Friend WithEvents ExitButton As Button
     Friend WithEvents StyleFormToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ColorsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents UCTestToolStripMenuItem As ToolStripMenuItem
 End Class

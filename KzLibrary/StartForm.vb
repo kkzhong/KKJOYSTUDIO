@@ -152,6 +152,10 @@ Public Class StartForm
         FormSwitch(KzAprsDialog, "測試")
     End Sub
 
+    Private Sub UCTestToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UCTestToolStripMenuItem.Click
+        FormSwitch(UCTestDialog, "Test", False, False)
+    End Sub
+
 
 #End Region
 End Class

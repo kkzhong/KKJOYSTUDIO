@@ -392,14 +392,6 @@ Public Class DirectionTriangle
 
 End Class 'DirectionTriangle
 
-Public Class Quadrangle
-    Inherits BaseShape
-
-    Public Sub New(p1 As Point, p2 As Point, p3 As Point, p4 As Point)
-
-    End Sub
-End Class 'Quadrangle
-
 Public Enum ButtonType
     Blank
     Close
@@ -582,6 +574,28 @@ Public Class SquareButton
 
 End Class 'SquareButton
 
+Public Class KzTabDesignSet
+    Public Property RootBackColor As Color = SystemColors.Control 'TabControl整體之背景色
+    Public Property AutoTabWidth As Boolean = True '自動調整Tab寬度
+    Public Property TabsUnderlineSize As Integer = 0
+    Public Property OpenSelectedTabUnderline As Boolean = False '
+    Public Property ShowCloseButtonOnTab As Boolean = True '
+    Public Property ShowCloseOnUnselectedTabs As Boolean = False
+    Public Property ShowAddOnSelectedTab As Boolean = False
+    Public Property IgnorePrivateTabSetting As Boolean = True
+
+    Public Property DefaultTab As KzAppearances
+    Public Property SelectedTab As KzAppearances
+    Public Property DefaultButton As KzAppearances
+    Public Property SelectedButton As KzAppearances
+
+    Public ReadOnly Property RootBackBrush As Brush
+        Get
+            Return New SolidBrush(Me.RootBackColor)
+        End Get
+    End Property
+End Class
+
 Public Class KzAppearances
     Public Property Name As String = "NewAppearances"
     Public Property BorderRadius As Integer = 0
@@ -596,13 +610,61 @@ Public Class KzAppearances
 
     Public Property FontFamily As FontFamily = SystemFonts.DefaultFont.FontFamily
     Public Property FontSize As Single = SystemFonts.DefaultFont.Size
-    Public Property FontStyle As FontStyle = SystemFonts.DefaultFont.Style
 
-    Public ReadOnly Property Font As Font
-        Get
-            Return New Font(FontFamily, FontSize, FontStyle)
-        End Get
-    End Property
+    Public Function Font(status As KzStatus) As Font
+        Dim fs As FontStyle
+        Select Case status
+            Case KzStatus.Normal : fs = Me.Normal.FontStyle
+            Case KzStatus.Hover : fs = Me.Hover.FontStyle
+            Case KzStatus.Pressed : fs = Me.Pressed.FontStyle
+            Case KzStatus.Checked : fs = Me.Checked.FontStyle
+        End Select
+        Return New Font(Me.FontFamily, Me.FontSize, fs)
+    End Function
+
+    Public Shared Function ColorAdd(color1 As Color, color2 As Color, Optional plus As Boolean = True) As Color
+        Dim a, r, g, b As Byte
+
+        If plus Then
+            a = Math.Min(255, color1.A + color2.A)
+            r = Math.Min(255, color1.R + color2.R)
+            g = Math.Min(255, color1.G + color2.G)
+            b = Math.Min(255, color1.B + color2.B)
+        Else
+            a = Math.Max(0, CType(color1.A, Short) - CType(color2.A, Short))
+            r = Math.Max(0, CType(color1.R, Short) - CType(color2.R, Short))
+            g = Math.Max(0, CType(color1.G, Short) - CType(color2.G, Short))
+            b = Math.Max(0, CType(color1.B, Short) - CType(color2.B, Short))
+        End If
+
+        Return Color.FromArgb(a, r, g, b)
+    End Function
+
+    Public Shared Function ReColor(color As Color, argb As Char, value As Byte, Optional updown As Boolean = False) As Color
+        Dim a, r, g, b As Byte
+        a = color.A
+        r = color.R
+        g = color.G
+        b = color.B
+
+        Select Case argb
+            Case "a" : a = If(updown, Math.Max(0, Math.Min(255, color.A + value)), value)
+            Case "r" : r = If(updown, Math.Max(0, Math.Min(255, color.R + value)), value)
+            Case "g" : g = If(updown, Math.Max(0, Math.Min(255, color.G + value)), value)
+            Case "b" : b = If(updown, Math.Max(0, Math.Min(255, color.B + value)), value)
+            Case Else
+        End Select
+
+        Return Color.FromArgb(a, r, g, b)
+    End Function
+
+    Public Shared Function FontResize(font As Font, value As Single, Optional updown As Boolean = False) As Font
+        If updown Then
+            Return New Font(font.FontFamily, font.Size + value, font.Style)
+        Else
+            Return New Font(font.FontFamily, value, font.Style)
+        End If
+    End Function
 End Class
 
 Public Class KzAppearance
@@ -613,6 +675,7 @@ Public Class KzAppearance
     Public Property ForeColor As Color = SystemColors.ControlText
     Public Property ShadowDirection As KzSidePosition = KzSidePosition.RightBottom
     Public Property ShadowColor As Color = SystemColors.ButtonShadow
+    Public Property FontStyle As FontStyle = SystemFonts.DefaultFont.Style
 
     Public ReadOnly Property BorderPen As Pen
         Get
@@ -643,4 +706,9 @@ Public Class KzAppearance
             Return New SolidBrush(ShadowColor)
         End Get
     End Property
+
 End Class
+
+
+
+

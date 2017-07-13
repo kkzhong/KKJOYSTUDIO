@@ -5,7 +5,7 @@ Public Class StylesForm
 
     Public ReadOnly Property OutputStyle As KzDrawingStyle
         Get
-            Return New KzDrawingStyle(KzControlStatus.None) With {
+            Return New KzDrawingStyle(KzStatus.None) With {
                     .Type = StatusCBox.SelectedItem,
                     .FrameWidth = FrameWidthUD.Value,
                     .FrameColor = FrameColorBox.Tag,
@@ -71,7 +71,7 @@ Public Class StylesForm
         With StatusCBox
             For i As Integer = 0 To 8
                 Try
-                    .Items.Add(CType(i, KzControlStatus))
+                    .Items.Add(CType(i, KzStatus))
                 Catch ex As Exception
                 End Try
             Next
@@ -106,9 +106,9 @@ Public Class StylesForm
         'sb.AppendLine("    With theStyle")
 
         Try
-            sb.AppendLine("        .Type = KzControlStatus." & StatusCBox.SelectedItem.ToString)
+            sb.AppendLine("        .Type = KzStatus." & StatusCBox.SelectedItem.ToString)
         Catch ex As Exception
-            sb.AppendLine("        .Type = KzControlStatus.None")
+            sb.AppendLine("        .Type = KzStatus.None")
         End Try
 
         sb.AppendLine("        .FrameWidth = " & FrameWidthUD.Value)

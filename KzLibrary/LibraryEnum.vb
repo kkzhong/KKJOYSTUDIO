@@ -54,13 +54,14 @@ Public Enum KzDirection
     ZoomOut
 End Enum 'KzDirection
 
-Public Enum KzControlStatus
+Public Enum KzStatus
     None
     Normal
     Hover
+    Pressed
+    Checked
     MoveIn
     MoveOut
-    Selected
     DragBegin
     DragEnd
     Zooming
