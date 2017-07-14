@@ -622,7 +622,8 @@ Public Class KzAppearances
         Return New Font(Me.FontFamily, Me.FontSize, fs)
     End Function
 
-    Public Shared Function ColorAdd(color1 As Color, color2 As Color, Optional plus As Boolean = True) As Color
+    Public Shared Function ColorAdd(color1 As Color, color2 As Color,
+                                    Optional plus As Boolean = True) As Color
         Dim a, r, g, b As Byte
 
         If plus Then
@@ -640,7 +641,8 @@ Public Class KzAppearances
         Return Color.FromArgb(a, r, g, b)
     End Function
 
-    Public Shared Function ReColor(color As Color, argb As Char, value As Byte, Optional updown As Boolean = False) As Color
+    Public Shared Function ReColor(color As Color, argb As Char, value As Byte,
+                                   Optional updown As Boolean = False) As Color
         Dim a, r, g, b As Byte
         a = color.A
         r = color.R
@@ -658,11 +660,21 @@ Public Class KzAppearances
         Return Color.FromArgb(a, r, g, b)
     End Function
 
-    Public Shared Function FontResize(font As Font, value As Single, Optional updown As Boolean = False) As Font
+    Public Shared Function FontResize(font As Font, value As Single,
+                                      Optional updown As Boolean = False) As Font
         If updown Then
             Return New Font(font.FontFamily, font.Size + value, font.Style)
         Else
             Return New Font(font.FontFamily, value, font.Style)
+        End If
+    End Function
+
+    Public Shared Function FontRestyle(font As Font, value As FontStyle,
+                                       Optional addstyle As Boolean = False) As Font
+        If addstyle Then
+            Return New Font(font.FontFamily, font.Size, font.Style Or value)
+        Else
+            Return New Font(font.FontFamily, font.Size, value)
         End If
     End Function
 End Class

@@ -168,6 +168,12 @@
     <Compile Include="TestObjects\TestSettingTab.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="TestObjects\TestSticker.Designer.vb">
+      <DependentUpon>TestSticker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TestObjects\TestSticker.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="TestObjects\UCTestDialog.Designer.vb">
       <DependentUpon>UCTestDialog.vb</DependentUpon>
     </Compile>
@@ -205,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TestObjects\TestSettingTab.resx">
       <DependentUpon>TestSettingTab.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestObjects\TestSticker.resx">
+      <DependentUpon>TestSticker.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestObjects\UCTestDialog.resx">
       <DependentUpon>UCTestDialog.vb</DependentUpon>
